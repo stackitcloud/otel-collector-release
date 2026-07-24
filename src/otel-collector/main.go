@@ -17,7 +17,7 @@ func main() {
 	info := component.BuildInfo{
 		Command:     "otelcol-cf",
 		Description: "OpenTelemetry Collector for CloudFoundry",
-		Version:     "0.11.9",
+		Version:     "0.11.10-scf",
 	}
 
 	set := otelcol.CollectorSettings{
@@ -32,11 +32,10 @@ func main() {
 			},
 		},
 		ProviderModules: map[string]string{
-			envprovider.NewFactory().Create(confmap.ProviderSettings{}).Scheme(): "go.opentelemetry.io/collector/confmap/provider/envprovider v1.61.0",
+			envprovider.NewFactory().Create(confmap.ProviderSettings{}).Scheme():  "go.opentelemetry.io/collector/confmap/provider/envprovider v1.61.0",
 			fileprovider.NewFactory().Create(confmap.ProviderSettings{}).Scheme(): "go.opentelemetry.io/collector/confmap/provider/fileprovider v1.61.0",
 		},
-		ConverterModules: []string{
-		},
+		ConverterModules: []string{},
 	}
 
 	if err := run(set); err != nil {

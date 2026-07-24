@@ -8,3 +8,5 @@ releases/*.tgz
 releases/**/*.tgz
 
 src/otel-collector/cf-otel-collector
+
+SECRETS.json

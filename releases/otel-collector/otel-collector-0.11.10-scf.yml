@@ -1,0 +1,50 @@
+name: otel-collector
+version: 0.11.10-scf
+commit_hash: e387ca0e
+uncommitted_changes: false
+jobs:
+  - name: otel-collector
+    version: cdd2cd527feeea3448a39ada31ae5ae397aadccfd1d0f91f5aabba0c8fd15df5
+    fingerprint: cdd2cd527feeea3448a39ada31ae5ae397aadccfd1d0f91f5aabba0c8fd15df5
+    sha1: sha256:15516121308d3813de659516ee14f7059e9ca42e1ff90dd2dcbfe5a730fcc042
+    packages:
+      - otel-collector
+  - name: otel-collector-windows
+    version: 48c41a9d62c2e3d8ccbc91b68e3c3c7ea84b340264a11d7e42a216ffaf92aebe
+    fingerprint: 48c41a9d62c2e3d8ccbc91b68e3c3c7ea84b340264a11d7e42a216ffaf92aebe
+    sha1: sha256:96cb4b4c04efe5de446e9ae07c6fb870553cca22fbedc6c182e1d122d6390c1d
+    packages:
+      - otel-collector-windows
+packages:
+  - name: golang-1.26-darwin
+    version: 1ce95ef4367f242f3ba7847e93c6e5523d1470204477953697ac3a6379aa35bc
+    fingerprint: 1ce95ef4367f242f3ba7847e93c6e5523d1470204477953697ac3a6379aa35bc
+    sha1: sha256:c092ab6d2b4c3b07c095a7e4f2dcdb4ae5c5896df5bb2b8c7b06d891f813ff97
+    dependencies: []
+  - name: golang-1.26-linux
+    version: 8c9cb9ef73b4301c89d60a58126c2111193418dd7eb819cc163d3dbcd4f0b256
+    fingerprint: 8c9cb9ef73b4301c89d60a58126c2111193418dd7eb819cc163d3dbcd4f0b256
+    sha1: sha256:1b891d14f5c63b66ee08036c230bd5ac636d92119bebf765ab655ebbdd414d0a
+    dependencies: []
+  - name: golang-1.26-windows
+    version: 44aeeac8ae87e62ff23400385e55ccc02961e16a86e821398aeb47416cf5cde6
+    fingerprint: 44aeeac8ae87e62ff23400385e55ccc02961e16a86e821398aeb47416cf5cde6
+    sha1: sha256:659ba7a4a4d4d13b685219ecf01a7caa6812316814f3b5d89225f628c3f2585d
+    dependencies: []
+  - name: otel-collector
+    version: 01eeab24465d5371d8edecf656382878ceeb410c524e1f6d4bd2fd3d4e811f27
+    fingerprint: 01eeab24465d5371d8edecf656382878ceeb410c524e1f6d4bd2fd3d4e811f27
+    sha1: sha256:eb1b4809d5afa88ee33a36a27198680578ca8176c5b3b80933ea0409595366ae
+    dependencies:
+      - golang-1.26-linux
+  - name: otel-collector-windows
+    version: 1fec1d73208dbe44f3546c99c3e7f38121e4cf585cd341ac3111d8b7a28fd33c
+    fingerprint: 1fec1d73208dbe44f3546c99c3e7f38121e4cf585cd341ac3111d8b7a28fd33c
+    sha1: sha256:aa65659e1337ab8434e0e2d92d017b215d4f86b4b9447dc3ec9428f5c689116b
+    dependencies:
+      - golang-1.26-windows
+license:
+  version: 4ae6931b32c1717b3671633b515c8fa60bd91c44e402ef7b9bc83d7e2a92e425
+  fingerprint: 4ae6931b32c1717b3671633b515c8fa60bd91c44e402ef7b9bc83d7e2a92e425
+  sha1: sha256:f1b863d681317c84d3d6639e3d54eb3445484d2f679979cb5aa9842b7b210182
+no_compression: false
