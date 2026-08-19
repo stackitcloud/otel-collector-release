@@ -210,8 +210,8 @@ end
 
 if !p('custom_receiver_enabled')
     set_internal_receiver_as_only_receiver
-    set_internal_receiver_on_all_pipelines
     add_nop_pipelines
+    set_internal_receiver_on_all_pipelines
 end
 
 expose_internal_telemetry

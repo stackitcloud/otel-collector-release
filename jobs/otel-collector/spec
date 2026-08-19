@@ -15,7 +15,7 @@ packages:
 
 properties:
   enabled:
-    description: "Enable OTel Collector."
+    description: "Enable OTel Collector"
     default: true
   custom_receiver_enabled:
     description: "Disable default otlp/cf-internal-local receiver"
