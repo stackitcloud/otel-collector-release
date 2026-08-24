@@ -60,14 +60,21 @@ PACKAGE_FILE_TIMESTAMP := otel-collector-release-$(RELEASE_TIMESTAMP_VERSION).tg
 
 S3_CONFIG := .temp_s3cfg
 
+# Ruby
+# Evaluate rbenv root once and prepend it to the PATH for all targets
+export PATH := $(shell rbenv root)/shims:$(PATH)
+
+# Force all Ruby/Bundler commands in this Makefile to use 3.3.0
+export RBENV_VERSION := 3.3.0
+
 # --- Targets ---
 
 .PHONY: all package push clean
 
-all: package push
+all: test package push
 
 ## Package the BOSH release using bosh-cli (Dev/Timestamped)
-package:
+package: test
 	@echo 'Packaging BOSH dev release as $(PACKAGE_FILE_TIMESTAMP)...'
 	bosh create-release --force --version=$(RELEASE_TIMESTAMP_VERSION) --tarball=$(PACKAGE_FILE_TIMESTAMP)
 
@@ -90,7 +97,7 @@ push: package
 	@echo 'regexp: otel-collector/otel-collector-release-(0\..*-scf-.*).tgz'
 
 ## Package the BOSH release using bosh-cli (Final)
-package-final:
+package-final: test
 	@echo 'Packaging BOSH release as $(PACKAGE_FILE)...'
 	bosh create-release --version=$(RELEASE_VERSION) --tarball=$(PACKAGE_FILE)
 
@@ -109,7 +116,22 @@ push-final: package-final
 
 	@rm -f $(S3_CONFIG)
 	@echo 'Upload complete: s3://$(STACKIT_BUCKET)/$(S3_OBJECT_PATH)'
+
 ## Clean up build artifacts
 clean:
 	@echo 'Cleaning up...'
 	rm -rf otel-collector-release-*.tgz $(S3_CONFIG) blobs dev_releases .dev_builds
+
+## Install Ruby
+install-ruby:
+	brew list rbenv || brew install rbenv
+	rbenv install --skip-existing $(RBENV_VERSION)
+	rbenv local $(RBENV_VERSION)
+	@echo 'Setup complete for Ruby $(RBENV_VERSION)!'
+	@echo 'If you have not already, add this to your shell config:'
+	@echo 'echo '\''eval "$$(rbenv init - zsh)"'\'' >> ~/.zshrc'
+
+## Run the tests
+test: install-ruby
+	@echo 'Running tests...'
+	./scripts/test

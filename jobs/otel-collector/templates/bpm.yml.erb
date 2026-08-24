@@ -27,7 +27,7 @@
     }
 
     if_p('additional_volumes') do |volumes|
-      bpm['processes'][0]['additional_volumes'] = volumes
+      bpm['processes'][0]['additional_volumes'] = volumes unless volumes.empty?
     end
 
     YAML.dump(bpm) 
